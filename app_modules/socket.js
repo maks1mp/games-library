@@ -1,5 +1,5 @@
 let players = [];
-
+let rooms = [];
 class SOCKET {
   static updateList(data){
     let userId = players.find( player => player.id === data.id );
@@ -7,6 +7,13 @@ class SOCKET {
   }
   static getPlayers(){
     return players;
+  }
+  static createRoom(roomName){
+    let roomId = rooms.find( room => room === roomName );
+    if (!roomId) rooms.push(rooms);
+  }
+  static getRooms(){
+    return rooms;
   }
 }
 

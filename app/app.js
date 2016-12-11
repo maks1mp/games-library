@@ -24,4 +24,14 @@ tictactoe.config(function ($stateProvider, $urlRouterProvider, $qProvider) {
           id: null,
       }
     })
+    .state('/room', {
+      url: '/room',
+      templateUrl: '/app/game/tpl.html',
+      controller: 'gameCtrl as ctrl',
+      params: {
+          roomId: null,
+          name: null,
+          id: null,
+      }
+  })
 });

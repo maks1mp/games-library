@@ -38,6 +38,7 @@ app.post('/login', (req, res)=>{
 
 io.on('connection', function (socket) {
   
+  
   socket.on('meeting', (data)=> {
     SOCKET.updateList(data);
     socket.emit('get', SOCKET.getPlayers());
@@ -45,7 +46,27 @@ io.on('connection', function (socket) {
   });
   
   socket.on('invite', (data)=>{
+    socket.emit('invited', data);
     socket.broadcast.emit('invited', data);
   });
   
+  socket.on('room', (data)=>{
+    console.log('in room');
+  });
+  
+  socket.on('create', (data)=>{
+    let roomName = 'room'+data.room;
+    SOCKET.createRoom(roomName);
+    dynamicCreateRooms();
+    socket.emit('start', {to: data.you, room: data.room});
+    socket.broadcast.emit('start', {to: data.rival, room: data.room} );
+  });
+    
 });
+
+
+function dynamicCreateRooms(){
+   SOCKET.getRooms().forEach((room)=>{
+    io.sockets.in(room).emit('message', 'what is going on, party people?');   
+   })
+};

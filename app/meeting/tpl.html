@@ -5,5 +5,5 @@
   <li ng-repeat="player in ctrl.players track by $index" ng-click="ctrl.invite(player.name, player.id)">{{player.name}}</li>
 </ul>
 
-
-<modal-invite data="ctrl.rival"></modal-invite>
+<modal-wait data="ctrl.callRival"></modal-wait>
+<modal-invite data="ctrl.rival" callback="ctrl.callback()"></modal-invite>
