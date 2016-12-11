@@ -1,0 +1,9 @@
+{{ctrl.name}}
+
+
+<ul ng-if="ctrl.players">
+  <li ng-repeat="player in ctrl.players track by $index" ng-click="ctrl.invite(player.name, player.id)">{{player.name}}</li>
+</ul>
+
+
+<modal-invite data="ctrl.rival"></modal-invite>

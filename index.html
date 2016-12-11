@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="/app/meeting/stylesheet.css">
+</head>
+<body ng-app="tictactoe">
+ 
+  <ui-view></ui-view>
+  
+<!--  libs -->
+<script src="/js/angular.js"></script>
+<script src="/js/angular-ui-router.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+<!-- app -->
+<script src="/app/app.js"></script>
+<!-- services -->
+<script src="/app/socket/factory.js"></script>
+<script src="/app/storage/factory.js"></script>
+<script src="/js/socket.js"></script>
+<!-- controllers -->
+<script src="/app/login/controller.js"></script>
+<script src="/app/meeting/controller.js"></script>
+
+<!-- directives -->
+<script src="/app/meeting/modal-invite.js"></script>
+<script src="app/meeting/modal-wait.js"></script>
+
+</body>
+</html>
