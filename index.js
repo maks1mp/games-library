@@ -9,14 +9,7 @@ const USER = require('./app_modules/user');
 
 const API = require('./app_modules/api');
 const SOCKET = require('./app_modules/socket');
-
-
-const PORT = 3000;
-
-
-server.listen(PORT, ()=>{
-  console.log(`sever runing on ${PORT}`);
-});
+const Tictactoe = require('./app_modules/game');
 
 app.use(bodyParser.urlencoded({
   extended: false
@@ -50,23 +43,23 @@ io.on('connection', function (socket) {
     socket.broadcast.emit('invited', data);
   });
   
-  socket.on('room', (data)=>{
-    console.log('in room');
+  socket.on('room', (roomId)=>{
+    let roomName = 'room'+roomId;
+    socket.join(roomName);
+    
   });
   
   socket.on('create', (data)=>{
     let roomName = 'room'+data.room;
     SOCKET.createRoom(roomName);
-    dynamicCreateRooms();
     socket.emit('start', {to: data.you, room: data.room});
     socket.broadcast.emit('start', {to: data.rival, room: data.room} );
-  });
-    
+  }); 
 });
 
 
-function dynamicCreateRooms(){
-   SOCKET.getRooms().forEach((room)=>{
-    io.sockets.in(room).emit('message', 'what is going on, party people?');   
-   })
-};
+const PORT = 3000;
+
+server.listen(PORT, ()=>{
+  console.log(`sever runing on ${PORT}`);
+});

@@ -15,6 +15,9 @@ class SOCKET {
   static getRooms(){
     return rooms;
   }
+  static tictactoe(){
+    
+  };
 }
 
 module.exports = SOCKET;
