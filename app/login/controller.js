@@ -22,3 +22,5 @@ function loginCtrl($scope, $stateParams, $state, socket, $http, storage){
     });
   };
 };
+
+
